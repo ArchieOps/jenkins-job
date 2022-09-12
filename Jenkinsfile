@@ -18,6 +18,3 @@
         }
     }
 }
-node {
-    // groovy script
-}
