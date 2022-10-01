@@ -25,7 +25,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'docker build -t akintunero/devops_bootcamp:JMA-1.0 .'
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        'docker push akintunero/devops_bootcamp:JMA-1.0'
+                        sh 'docker push akintunero/devops_bootcamp:JMA-1.0'
                     }
                 }
             }
