@@ -10,19 +10,23 @@ pipeline {
         maven 'Maven'
     }
     stages {
-        stage('build') {
+        stage('build jar') {
             steps {
                 script {
-                    echo "Building the application..."
-                    sh "mvn install"
+                    echo "Building the application jar file..."
+                    sh 'mvn package'
                 }
             }
         }
-        stage('test') {
+        stage('build docker image') {
             steps {
                 script {
-                    echo "Testing the application..."
-                    sh "mvn test"
+                    echo "Building the docker image..."
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh 'docker build -t akintunero/devops_bootcamp:JMA-1.0 .'
+                        sh "echo $PASS | docker login -u $USER --password-stdin"
+                        'docker push akintunero/devops_bootcamp:JMA-1.0'
+                    }
                 }
             }
         }
