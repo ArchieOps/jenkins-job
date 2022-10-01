@@ -32,14 +32,16 @@ pipeline {
                 message "Select the environment to deploy to"
                 ok "Done"
                 parameters{
-                    choice(name: 'ENV', choices: ['dev', 'staging', 'production'], description: '')
+                    choice(name: 'FIRST_ENV', choices: ['dev', 'staging', 'production'], description: '')
+                    choice(name: 'SECOND_ENV', choices: ['dev', 'staging', 'production'], description: '')
                 }
                 
             }
         
             steps {
                 script {
-                    echo "Deploying the ${ENV}"
+                    echo "Deploying the ${FIRST_ENV}"
+                    echo "Deploying the ${SECOND_ENV}"
                 }
             }
         }
