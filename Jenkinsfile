@@ -21,7 +21,7 @@ pipeline {
         stage('build docker image') {
             steps {
                 script {
-                    echo "Building the docker image..."
+                    echo "Building the docker images..."
                     withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'docker build -t akintunero/devops_bootcamp:JMA-1.0 .'
                         sh "echo $PASS | docker login -u $USER --password-stdin"
