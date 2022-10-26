@@ -3,33 +3,38 @@ def gv
 pipeline {
     agent any
     stages {
-        stage("init") {
+      
+        stage("build") {
             steps {
                 script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building jar"
+                    echo "building the aplication in $BRANCH_NAME"
                     //gv.buildJar()
                 }
             }
         }
         stage("build image") {
+            when{
+                expression{
+                    BRANCH_NAME == 'master'
+                }
+            }
             steps {
                 script {
-                    echo "building image"
+                    echo "building the image for the application $BRANCH_NAME"
                     //gv.buildImage()
                 }
             }
         }
         stage("deploy") {
+              when{
+                expression{
+                    BRANCH_NAME == 'master'
+                }
+            }
+
             steps {
                 script {
-                    echo "deploying"
+                    echo "deploying the application $BRANCH_NAME"
                     //gv.deployApp()
                 }
             }
