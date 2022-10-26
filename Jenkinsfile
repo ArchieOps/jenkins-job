@@ -20,7 +20,7 @@ pipeline {
             }
             steps {
                 script {
-                    echo "building the image for the application $BRANCH_NAME"
+                    echo "building the image for the application->>> $BRANCH_NAME"
                     //gv.buildImage()
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
 
             steps {
                 script {
-                    echo "deploying the application $BRANCH_NAME"
+                    echo "deploying the application->>> $BRANCH_NAME"
                     //gv.deployApp()
                 }
             }
