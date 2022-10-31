@@ -7,30 +7,30 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    echo "building the aplication in $BRANCH_NAME"
+                    
+                    echo "building the application..."
+                    sh 'mvn package'
                     //gv.buildJar()
                 }
             }
         }
         stage("build image") {
-            when{
-                expression{
-                    BRANCH_NAME == 'master'
-                }
-            }
+         
             steps {
                 script {
-                    echo "building the image for the application->>> $BRANCH_NAME"
+                   
+                    echo "building the docker image..."
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    sh 'docker build -t kokismoki/new-deploy:jma-2.0 .'
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh 'docker push kokismoki/new-deploy:jma-2.0'
+    }
                     //gv.buildImage()
                 }
             }
         }
         stage("deploy") {
-              when{
-                expression{
-                    BRANCH_NAME == 'master'
-                }
-            }
+            
 
             steps {
                 script {
