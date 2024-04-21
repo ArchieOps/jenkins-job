@@ -33,10 +33,9 @@ pipeline {
         stage("build and push image") {
             steps {
                 script {
-                    // buildImage 'archieops/my-private-repo:jma-3.0'
+                    buildImage 'archieops/my-private-repo:jma-3.0'
                     // dockerLogin()
                     // dockerPush 'archieops/my-private-repo:jma-3.0'
-                        buildImage()
                 }
             }
         }
