@@ -2,8 +2,8 @@
 
 library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
         [$class: 'GitSCMSource',
-         remote: 'https://gitlab.com/nanuchi/jenkins-shared-library.git',
-         credentialsId: 'gitlab-credentials'
+         remote: 'https://github.com/ArchieOps/jenkins-shared-library.git',
+         credentialsId: 'github-cred'
         ]
 )
 
@@ -33,9 +33,10 @@ pipeline {
         stage("build and push image") {
             steps {
                 script {
-                    buildImage 'nanajanashia/demo-app:jma-3.0'
-                    dockerLogin()
-                    dockerPush 'nanajanashia/demo-app:jma-3.0'
+                    // buildImage 'archieops/my-private-repo:jma-3.0'
+                    // dockerLogin()
+                    // dockerPush 'archieops/my-private-repo:jma-3.0'
+                        buildImage()
                 }
             }
         }
