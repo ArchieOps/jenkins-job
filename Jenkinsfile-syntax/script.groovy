@@ -12,6 +12,14 @@ def buildImage() {
     }
 } 
 
+def testApp() {
+    echo "testing app right now..."
+}
+
+def buildApp(){
+    echo "building app right now..."
+}
+
 def deployApp() {
     echo 'deploying the application...'
 } 
