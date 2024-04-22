@@ -52,8 +52,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         // git config here for the first time run
-                        sh 'git config --global user.email "jenkins@example.com"'
-                        sh 'git config --global user.name "jenkins"'
+                        sh 'git config --global user.email "ArchieOps@example.com"'
+                        sh 'git config --global user.name "ArchieOps"'
 
                         sh "git remote set-url origin https://github.com/ArchieOps/jenkins-job.git"
                         sh 'git add .'
